@@ -16,7 +16,7 @@ const ContactsList = ({contacts}) => (
 
 export default ContactsList;
 
-// ContactsList.propTypes = {
-//     text: PropTypes.string.isRequired,
-//     id: PropTypes.number.isRequired,
-// }
+ContactsList.propTypes = {
+    text: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+}
