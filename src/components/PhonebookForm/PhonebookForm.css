@@ -1,0 +1,28 @@
+label {
+    display: flex;
+    flex-direction: column;
+   
+}
+
+label:not(:last-child) { 
+    margin-bottom: 15px;
+}
+
+input {
+    margin-top: 5px;
+    padding: 3px 6px;
+   border: 1px solid black;
+}
+
+button {
+    background-color: #5968c7;
+    border-color: #161373;
+    border: 50;
+    color: white;
+}
+
+form {
+    border: 2px solid #161373;
+    width: 300px;
+    padding: 10px 60px 10px 5px;
+}
