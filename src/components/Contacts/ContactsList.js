@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const ContactsList = ({contacts}) => (
     
@@ -16,7 +16,7 @@ const ContactsList = ({contacts}) => (
 
 export default ContactsList;
 
-ContactsList.propTypes = {
-    text: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-}
+// ContactsList.propTypes = {
+//     text: PropTypes.string.isRequired,
+//     id: PropTypes.number.isRequired,
+// }

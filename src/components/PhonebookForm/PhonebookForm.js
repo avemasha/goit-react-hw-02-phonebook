@@ -1,36 +1,34 @@
-import React  from "react";
+import React, {Component} from "react";
 
 import './PhonebookForm.css'
 
-const PhonebookForm = ({onSubmit, onChange}) => 
+class PhonebookForm extends Component {
 
-    // state = {
+    state = {
        
-    //     name: ''
-    //   }
+        name: ''
+      }
     
-    // handleSubmit = e => {
-    //     e.preventDefault()
-    //     console.log(this.state)
+    handleSubmit = e => {
+        e.preventDefault()
+        console.log(this.state)
   
-    //     this.props.onSubmit(this.state.name);
+        this.props.onSubmit(this.state.name);
   
-    //     this.setState({name: ''})
-    //   }
+        this.setState({name: ''})
+      }
 
 
-    // handleChange = e => {
-    //     this.setState( {name: e.currentTarget.value})
-    //   }
+      onChange = e => {
+        this.setState( {name: e.currentTarget.value})
+      }
     
   
-    //   addContact = name => {
-    //     console.log(name)
-    //   }
 
-  
- (
-        <form onSubmit={onSubmit} >
+render () {
+
+  return (
+        <form onSubmit={this.handleSubmit} >
             <label>Name
             <input
             id="input"
@@ -40,7 +38,7 @@ const PhonebookForm = ({onSubmit, onChange}) =>
   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
   required
   placeholder="Enter name"
-  onChange={onChange}
+  onChange={this.onChange}
 
 />
             </label>
@@ -49,6 +47,8 @@ const PhonebookForm = ({onSubmit, onChange}) =>
         </form>
         
     )
+ }
+}
 
 
 export default PhonebookForm;

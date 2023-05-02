@@ -10,7 +10,7 @@ import ContactsList from "./Contacts/ContactsList";
 
     state = {
       contacts: [],
-      name: ''
+      
     }
 
      addContact = text => {
@@ -29,14 +29,14 @@ import ContactsList from "./Contacts/ContactsList";
       console.log(this.state.contacts)
     }
 
-    handleSubmit = e => {
-      e.preventDefault()
-      console.log(this.state)
+    // handleSubmit = e => {
+    //   e.preventDefault()
+    //   console.log(this.state)
 
-      this.props.onSubmit(this.state.name);
+    //   this.props.onSubmit(this.state.name);
 
-      this.setState({name: ''})
-    }
+    //   this.setState({name: ''})
+    // }
 
 
   handleChange = e => {
@@ -67,7 +67,7 @@ import ContactsList from "./Contacts/ContactsList";
         }}
       >
         <Header header="Phonebook"></Header>
-        <PhonebookForm onSubmit = {this.addContact} onChange={this.handleChange}  value={this.state.name} ></PhonebookForm>
+        <PhonebookForm onSubmit = {this.addContact}   value={this.state.name} ></PhonebookForm>
         <Header header="Contacts"></Header>
         <ContactsList contacts = {contacts} ></ContactsList>
     </div>
