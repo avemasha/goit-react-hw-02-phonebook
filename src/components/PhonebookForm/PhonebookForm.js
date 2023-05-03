@@ -6,21 +6,30 @@ class PhonebookForm extends Component {
 
     state = {
        
-        name: ''
+        name: '',
+        number: ''
       }
     
     handleSubmit = e => {
         e.preventDefault()
         console.log(this.state)
   
-        this.props.onSubmit(this.state.name);
+        // this.props.onSubmit(this.state.name);
+       
+        let contactToAdd = { name: this.state.name, number: this.state.number };
+
+        this.props.onSubmit(contactToAdd);
   
-        this.setState({name: ''})
+        this.setState({name: '', number: ''})
+       
       }
 
 
       onChange = e => {
-        this.setState( {name: e.currentTarget.value})
+        
+        const { name, value } = e.currentTarget;
+        this.setState({ [name]: value, });
+       
       }
     
   
@@ -39,10 +48,23 @@ render () {
   required
   placeholder="Enter name"
   onChange={this.onChange}
-
+  value={this.state.name}
 />
             </label>
 
+        
+        <label>Number
+        <input
+  type="tel"
+  name="number"
+  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+  onChange={this.onChange}
+  value = {this.state.number}
+  placeholder ="Enter number"
+  required
+/>
+        </label>
         <button type="submit">Add contact</button>
         </form>
         

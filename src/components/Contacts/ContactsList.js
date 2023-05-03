@@ -1,18 +1,25 @@
-import React from "react";
-// import PropTypes from 'prop-types';
+import React, {Component} from "react";
+import PropTypes from 'prop-types';
 
-const ContactsList = ({contacts}) => (
-    
-       
-        <ul className="ContactsList">
-            { contacts.map(  ({id, text}) => (
-                 <li key={id}>{text}</li>
-            ))}
-           
-        </ul>
-    
+class ContactsList extends Component  { 
 
-)
+    createList = () => {
+        return this.props.contacts.map (contact  => {
+            return (
+                <li key={contact.id}>
+                  {`${contact.name}: ${contact.number}`}
+            
+                </li> )})
+        }
+
+    
+      render (){
+        return(
+      <ul>{this.createList()}</ul>
+    
+        )
+
+}}
 
 export default ContactsList;
 
@@ -20,3 +27,12 @@ export default ContactsList;
 //     text: PropTypes.string.isRequired,
 //     id: PropTypes.number.isRequired,
 // }
+
+ContactsList.propTypes = {
+    contacts: PropTypes.array.isRequired,
+   
+  };
+
+ContactsList.defaultProps = {
+    contacts: [],
+  };

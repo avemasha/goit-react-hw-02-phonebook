@@ -13,21 +13,40 @@ import ContactsList from "./Contacts/ContactsList";
       
     }
 
-     addContact = text => {
-      console.log(text)
+    //  addContact = text => {
+    //   console.log(text)
 
-      const contact = {
-        id: nanoid(),
-        text,
-      }
+    //   const contact = {
+    //     id: nanoid(),
+    //     // text,
+    //     // number
+    //   }
+
+    formSubmitHandler = data => {
+      this.repeatControl(data);
+    };
 
 
-      this.setState(({ contacts })=> ({
-        contacts: [ contact, ...contacts],
-      }))
-
-      console.log(this.state.contacts)
+  repeatControl = data => {
+    let nameArray= [];
+    nameArray = this.state.contacts.map(cur => cur.name);
+    if (!nameArray.includes(data.name)) {
+      let arrayCont = [];
+      arrayCont = [
+        ...this.state.contacts,
+        { id: nanoid(), name: data.name, number: data.number },
+      ];
+      return this.setState({ ...this.state, contacts: arrayCont });
+    } else {
+      alert(' Контакт вже є у телефонній книзі!');
     }
+  };
+      // this.setState(({ contacts })=> ({
+    //   //   contacts: [ contact, ...contacts],
+    //   // }))
+
+    //   console.log(this.state.contacts)
+    // }
 
     // handleSubmit = e => {
     //   e.preventDefault()
@@ -52,7 +71,7 @@ import ContactsList from "./Contacts/ContactsList";
   
     render () {
 
-      const {contacts} = this.state;
+      
 
       return (
       <div
@@ -67,9 +86,9 @@ import ContactsList from "./Contacts/ContactsList";
         }}
       >
         <Header header="Phonebook"></Header>
-        <PhonebookForm onSubmit = {this.addContact}   value={this.state.name} ></PhonebookForm>
+        <PhonebookForm onSubmit = {this.formSubmitHandler}     ></PhonebookForm>
         <Header header="Contacts"></Header>
-        <ContactsList contacts = {contacts} ></ContactsList>
+        <ContactsList contacts={this.state.contacts}></ContactsList>
     </div>
      ) 
     };
