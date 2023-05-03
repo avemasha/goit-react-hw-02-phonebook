@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
+import css from './ContactsList.css'
+
 class ContactsList extends Component  { 
 
     createList = () => {
@@ -8,7 +10,7 @@ class ContactsList extends Component  {
             return (
                 <li key={contact.id}>
                   {`${contact.name}: ${contact.number}`}
-            
+                  <button type="button" className="deleteBtn">Delete</button>
                 </li> )})
         }
 

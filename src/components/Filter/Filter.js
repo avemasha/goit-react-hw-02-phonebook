@@ -12,6 +12,7 @@ class FilterForm extends Component {
               <div>
                 <h4>Find contacts by name</h4>
                 <input placeholder="Enter contact name" onChange={this.setFilterValue}></input>
+                
               </div>
             );
           }

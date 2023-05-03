@@ -48,22 +48,9 @@ import FilterForm from './Filter/Filter';
       alert(' Контакт вже є у телефонній книзі!');
     }
   };
-      // this.setState(({ contacts })=> ({
-    //   //   contacts: [ contact, ...contacts],
-    //   // }))
+      
 
-    //   console.log(this.state.contacts)
-    // }
-
-    // handleSubmit = e => {
-    //   e.preventDefault()
-    //   console.log(this.state)
-
-    //   this.props.onSubmit(this.state.name);
-
-    //   this.setState({name: ''})
-    // }
-
+   
 
   handleChange = e => {
       this.setState( {name: e.currentTarget.value})
