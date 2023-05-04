@@ -5,12 +5,18 @@ import css from './ContactsList.css'
 
 class ContactsList extends Component  { 
 
+    deleteId = Id => {
+        this.props.del(Id);
+      };
+
     createList = () => {
         return this.props.contacts.map (contact  => {
             return (
                 <li key={contact.id}>
                   {`${contact.name}: ${contact.number}`}
-                  <button type="button" className="deleteBtn">Delete</button>
+                  <button type="button" className="deleteBtn"
+                   onClick={() => this.deleteId(contact.id)}
+                   >Delete</button>
                 </li> )})
         }
 

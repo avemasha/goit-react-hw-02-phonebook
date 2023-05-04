@@ -73,6 +73,19 @@ import FilterForm from './Filter/Filter';
     // addContact = name => {
     //   console.log(name)
     // }
+    elementDelete = (array, contactId) => {
+      let newArr = array.filter(elem => elem.id !== contactId);
+      return newArr;
+    };
+  
+    deleteContactFromContactList = contactId => {
+      let newArrAfterDel = this.elementDelete(this.state.contacts, contactId);
+      this.setState({
+        ...this.state,
+        contacts: [...newArrAfterDel],
+      });
+    };
+  
 
     
   
@@ -96,7 +109,7 @@ import FilterForm from './Filter/Filter';
         <PhonebookForm onSubmit = {this.formSubmitHandler}     ></PhonebookForm>
         <Header header="Contacts"></Header>
         <FilterForm setFilterToState={this.setFilterToState}></FilterForm>
-        <ContactsList contacts={this.filterArr(this.state.contacts)}>
+        <ContactsList contacts={this.filterArr(this.state.contacts)}  del={this.deleteContactFromContactList}>
         
         </ContactsList>
     </div>
