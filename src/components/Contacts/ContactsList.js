@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
-import css from './ContactsList.css'
+import  './ContactsList.css'
 
 class ContactsList extends Component  { 
 
