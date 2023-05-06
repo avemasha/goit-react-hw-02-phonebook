@@ -35,18 +35,31 @@ import FilterForm from './Filter/Filter';
 
 
   repeatControl = data => {
-    let nameArray= [];
-    nameArray = this.state.contacts.map(cur => cur.name);
-    if (!nameArray.includes(data.name)) {
-      let arrayCont = [];
-      arrayCont = [
+    // let nameArray= [];
+    // nameArray = this.state.contacts.map(cur => cur.name);
+    // if (!nameArray.includes(data.name)) {
+    //   let arrayCont = [];
+     let arrayCont = [
         ...this.state.contacts,
         { id: nanoid(), name: data.name, number: data.number },
       ];
-      return this.setState({ ...this.state, contacts: arrayCont });
-    } else {
-      alert(' Контакт вже є у телефонній книзі!');
+   
+    const isExist = this.state.contacts.find(cont => data === cont.name)
+
+    if (isExist) { 
+   
+       return alert(' Контакт вже є у телефонній книзі!');
+     
     }
+    else {
+      return this.setState( prevState => {
+        return {
+           contacts: arrayCont
+        }
+        } );
+    }
+     
+   
   };
       
 
@@ -57,17 +70,17 @@ import FilterForm from './Filter/Filter';
     }
   
     setFilterToState = filterData => {
-      this.setState({ ...this.state, filter: `${filterData}` });
+      this.setState({  filter: `${filterData}` });
 
     
     };
 
     
-  filterArr = fArr => {
-    let newArr = fArr.filter(cur =>
-      cur.name.toUpperCase().includes(this.state.filter),
+  filterArr = () => {
+   return this.state.contacts.filter(filteredCont =>
+    filteredCont.name.toUpperCase().includes(this.state.filter),
     );
-    return newArr;
+  
   };
 
     // addContact = name => {
@@ -78,12 +91,13 @@ import FilterForm from './Filter/Filter';
       return newArr;
     };
   
-    deleteContactFromContactList = contactId => {
+    deleteContact = contactId => {
       let newArrAfterDel = this.elementDelete(this.state.contacts, contactId);
-      this.setState({
-        ...this.state,
-        contacts: [...newArrAfterDel],
-      });
+      this.setState(prevState => ({
+        
+        contacts: [...newArrAfterDel]
+      })
+      )
     };
   
 
@@ -109,7 +123,7 @@ import FilterForm from './Filter/Filter';
         <PhonebookForm onSubmit = {this.formSubmitHandler}     ></PhonebookForm>
         <Header header="Contacts"></Header>
         <FilterForm setFilterToState={this.setFilterToState}></FilterForm>
-        <ContactsList contacts={this.filterArr(this.state.contacts)}  del={this.deleteContactFromContactList}>
+        <ContactsList contacts={this.filterArr(this.state.contacts)}  del={this.deleteContact}>
         
         </ContactsList>
     </div>
