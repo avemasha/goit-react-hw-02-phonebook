@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 
 import React, { Component} from "react";
 import PhonebookForm from "./PhonebookForm/PhonebookForm";
-import ContactsList from "./Contacts/ContactsList";
+import {ContactsList} from "./Contacts/ContactsList";
 import FilterForm from './Filter/Filter';
 
 
@@ -60,32 +60,39 @@ import FilterForm from './Filter/Filter';
     };
 
     
-  filterArr = () => {
-   return this.state.contacts.filter(filteredCont =>
-    filteredCont.name.toUpperCase().includes(this.state.filter),
+  filterArr = (contacts, filter) => {
+    const normalizedFilter = filter.toLowerCase();
+    const filterContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
-  
+    if (filterContacts.length < 1) {
+     return alert(' Співпадінь немає');
+    }
+    return filterContacts;
   };
-    // elementDelete = (array, contactId) => {
-    //   let newArr = array.filter(elem => elem.id !== contactId);
-    //   return newArr;
-    // };
+
+  setFilterValue = event => {
+
+
+    this.setState({
+      filter: event.currentTarget.value,
+    });
+}
   
-    deleteContact = contactId => {
-      // let newArrAfterDel = this.elementDelete(this.state.contacts, contactId);
+    deleteContact  = contactId => {
       this.setState(prevState => ({
-        
-        contacts: [...prevState.contacts.filter(elem => elem.id !== contactId)]
-      })
-      )
+        contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+      }));
     };
+ 
   
 
     
   
     render () {
 
-      const contacts = this.filterArr()
+      // const contacts = this.filterArr()
+      const { contacts, filter } = this.state;
       
 
       return (
@@ -103,8 +110,8 @@ import FilterForm from './Filter/Filter';
         <Header header="Phonebook"></Header>
         <PhonebookForm onSubmit = {this.formSubmitHandler}     />
         <Header header="Contacts"></Header>
-        <FilterForm setFilterToState={this.setFilterToState}/>
-        <ContactsList contacts={contacts}  del={this.deleteContact}/>
+        <FilterForm  filter={filter} setFilterValue = {this.setFilterValue} setFilterToState={this.setFilterToState}/>
+        <ContactsList  states={this.filterArr(contacts, filter)}    deleteContact={this.deleteContact}/>
         
        
     </div>

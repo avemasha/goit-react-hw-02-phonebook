@@ -1,46 +1,38 @@
-import React, {Component} from "react";
-import PropTypes from 'prop-types';
+import React from "react";
+import { nanoid } from 'nanoid'
+// import { v4 as uuidv4 } from 'uuid';
+// import PropTypes from 'prop-types';
 
 import  './ContactsList.css'
 
-class ContactsList extends Component  { 
-
-    deleteId = Id => {
-        this.props.del(Id);
-      };
-
-    createList = () => {
-        return this.props.contacts.map (contact  => {
-            return (
-                <li key={contact.id}>
-                  {`${contact.name}: ${contact.number}`}
-                  <button type="button" className="deleteBtn"
-                   onClick={() => this.deleteId(contact.id)}
-                   >Delete</button>
-                </li> )})
-        }
-
+export const ContactsList = ({ states, deleteContact }) =>  { 
     
-      render (){
+
+  
+      
         return(
-      <ul>{this.createList()}</ul>
-    
+          <ul> {
+            
+      states.map (state  => {
+        return (
+         
+            <li key={nanoid()} id={state.id} >
+              {`${state.name}: ${state.number}`}
+              <button data-id={state.id} type="button" className="deleteBtn"
+              onClick={() => deleteContact(state.id)}
+               >Delete</button>
+            </li> 
+           )})
+         } </ul>
         )
 
-}}
+}
 
-export default ContactsList;
+
+
+
 
 // ContactsList.propTypes = {
-//     text: PropTypes.string.isRequired,
-//     id: PropTypes.number.isRequired,
-// }
-
-ContactsList.propTypes = {
-    contacts: PropTypes.array.isRequired,
+//     contacts: PropTypes.array.isRequired,
    
-  };
-
-ContactsList.defaultProps = {
-    contacts: [],
-  };
+//   };

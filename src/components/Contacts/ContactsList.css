@@ -5,3 +5,7 @@
 li:not(:last-child) {
     margin-bottom: 6px;
 }
+
+ul {
+    list-style: none;
+}
