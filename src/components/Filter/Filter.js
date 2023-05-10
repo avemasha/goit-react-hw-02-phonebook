@@ -3,10 +3,7 @@ import './Filter.css'
 
 
 const FilterForm = ({setFilterValue, filter}) => {
-    // setFilterValue = event => {
-    //     let value = event.currentTarget.value.toUpperCase();
-    //     this.props.setFilterToState(value);
-    // }
+
          
             return (
               <div>

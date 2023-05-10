@@ -91,7 +91,7 @@ import FilterForm from './Filter/Filter';
   
     render () {
 
-      // const contacts = this.filterArr()
+    
       const { contacts, filter } = this.state;
       
 

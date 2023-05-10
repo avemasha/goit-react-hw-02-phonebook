@@ -75,6 +75,3 @@ render () {
 
 export default PhonebookForm;
 
-// PhonebookForm.propTypes = {
-
-// 
