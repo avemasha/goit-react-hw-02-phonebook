@@ -1,23 +1,19 @@
 import React from "react";
 import { nanoid } from 'nanoid'
-
+import PropTypes from 'prop-types';
 
 import  './ContactsList.css'
 
 export const ContactsList = ({ states, deleteContact }) =>  { 
-    
-
-  
-      
-        return(
+    return(
           <ul> {
             
       states.map (state  => {
         return (
          
-            <li key={nanoid()} id={state.id} >
+            <li key={nanoid()}  >
               {`${state.name}: ${state.number}`}
-              <button data-id={state.id} type="button" className="deleteBtn"
+              <button type="button" className="deleteBtn"
               onClick={() => deleteContact(state.id)}
                >Delete</button>
             </li> 
@@ -30,8 +26,7 @@ export const ContactsList = ({ states, deleteContact }) =>  {
 
 
 
-
-// ContactsList.propTypes = {
-//     contacts: PropTypes.array.isRequired,
-   
-//   };
+ContactsList.propTypes = {
+  states: PropTypes.array.isRequired,
+  
+};

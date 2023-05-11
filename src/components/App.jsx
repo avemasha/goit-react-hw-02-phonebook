@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import React, { Component} from "react";
 import PhonebookForm from "./PhonebookForm/PhonebookForm";
 import {ContactsList} from "./Contacts/ContactsList";
-import FilterForm from './Filter/Filter';
+import FilterForm from './Filter/FilterForm';
 
 
   class App extends Component {
@@ -20,20 +20,13 @@ import FilterForm from './Filter/Filter';
       
     }
 
-   
-
-
-    formSubmitHandler = data => {
+     formSubmitHandler = data => {
     
-  
-   
-    const isExist = this.state.contacts.find(cont => data === cont.name)
+  const isExist = this.state.contacts.find(cont => data === cont.name)
 
     if (isExist) { 
-   
        return alert(' Контакт вже є у телефонній книзі!');
-     
-    }
+     }
    
        this.setState(prevState => {
         return {
@@ -43,10 +36,7 @@ import FilterForm from './Filter/Filter';
           ]
         }
         } );
-    
-     
-   
-  };
+    };
       
 
    
@@ -55,25 +45,17 @@ import FilterForm from './Filter/Filter';
   
    setFilterToState = filterData => {
       this.setState({  filter: `${filterData}` });
-
-    
     };
 
     
   filterArr = (contacts, filter) => {
     const normalizedFilter = filter.toLowerCase();
-    const filterContacts = contacts.filter(contact =>
+    return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
-    if (filterContacts.length < 1) {
-     return alert(' Співпадінь немає');
-    }
-    return filterContacts;
-  };
+};
 
   setFilterValue = event => {
-
-
     this.setState({
       filter: event.currentTarget.value,
     });
@@ -85,15 +67,10 @@ import FilterForm from './Filter/Filter';
       }));
     };
  
-  
-
-    
-  
-    render () {
-
-    
-      const { contacts, filter } = this.state;
+  render () {
       
+      const { contacts, filter } = this.state;
+      const filteredContacts = this.filterArr(contacts, filter)
 
       return (
       <div
@@ -101,7 +78,6 @@ import FilterForm from './Filter/Filter';
          
           display: 'flex',
           flexDirection: 'column' ,
-        
           alignItems: 'flex-start',
           marginLeft: '30px'
           
@@ -111,10 +87,8 @@ import FilterForm from './Filter/Filter';
         <PhonebookForm onSubmit = {this.formSubmitHandler}     />
         <Header header="Contacts"></Header>
         <FilterForm  filter={filter} setFilterValue = {this.setFilterValue} setFilterToState={this.setFilterToState}/>
-        <ContactsList  states={this.filterArr(contacts, filter)}    deleteContact={this.deleteContact}/>
-        
-       
-    </div>
+        <ContactsList  states={filteredContacts}    deleteContact={this.deleteContact}/>
+         </div>
      ) 
     };
   }

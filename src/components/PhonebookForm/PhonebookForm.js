@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import PropTypes from 'prop-types';
 import './PhonebookForm.css'
 
 class PhonebookForm extends Component {
@@ -13,14 +13,9 @@ class PhonebookForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
         console.log(this.state)
-  
-        // this.props.onSubmit(this.state.name);
-       
         let contactToAdd = { name: this.state.name, number: this.state.number };
-
-        this.props.onSubmit(contactToAdd);
-  
-        this.setState({name: '', number: ''})
+         this.props.onSubmit(contactToAdd);
+          this.setState({name: '', number: ''})
        
       }
 
@@ -51,9 +46,7 @@ render () {
   value={this.state.name}
 />
             </label>
-
-        
-        <label>Number
+       <label>Number
         <input
   type="tel"
   name="number"
@@ -75,3 +68,7 @@ render () {
 
 export default PhonebookForm;
 
+
+PhonebookForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
